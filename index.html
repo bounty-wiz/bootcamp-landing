@@ -123,7 +123,7 @@
   </div>
 
   <!-- PayPal JS SDK: replace YOUR_CLIENT_ID and CURRENCY -->
-  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AYuMfSz3cOYcujRkezViWiEi9gsL1h_ujMCI608tehGraM-DlBV1eqMMjx9ztovROBrl_1JnbFyfZV98&currency=USD"></script>
   <script>
     const statusEl = document.getElementById("status");
 
@@ -154,14 +154,24 @@
         });
       },
       onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-          statusEl.textContent = "Payment received! Check your email in the next few minutes for onboarding details.";
-          console.log("Order details:", details);
+      return actions.order.capture().then(function(details) {
+        statusEl.textContent = "Payment received! Check your email soon for onboarding.";
 
-          // TODO: send the details to your backend / webhook / Google Apps Script
-          // fetch("/api/bootcamp/enroll", { method: "POST", body: JSON.stringify({ details }) })
-        });
-      },
+        const { name, email } = getFormData();
+        const orderId = details.id;
+        const amount = details.purchase_units?.[0]?.amount?.value;
+        const status = details.status;
+
+        // 👉 SEND TO GOOGLE SHEET (replace URL)
+        fetch("https://script.google.com/macros/s/AKfycbzr7AC1EkvtNkBrEHs2_PBW-iMM40IJPw3VntzFxU4EHb8CU0D5GaxoFzbzGIGzUgdDMw/exec", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, orderId, amount, status })
+        }).catch(err => console.error("Sheet save error:", err));
+
+        console.log("Order details:", details);
+      });
+    },
       onError: function(err) {
         console.error(err);
         statusEl.textContent = "Something went wrong with the payment. Please try again or contact us.";
