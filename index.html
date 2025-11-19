@@ -123,7 +123,10 @@
   </div>
 
   <!-- PayPal JS SDK: replace YOUR_CLIENT_ID and CURRENCY -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AZbz24mlJ9urygzu-wLGLH5XWwnsupcvh-gYZoFnE96HoAcFiqFAI-E8pr9hluiug5MIHX1bVCkakpiC&currency=USD"></script>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AZbz24mlJ9urygzu-wLGLH5XWwnsupcvh-gYZoFnE96HoAcFiqFAI-E8pr9hluiug5MIHX1bVCkakpiC&currency=USD&components=buttons"
+        data-sdk-integration-source="developer-studio"
+    ></script>
   <script>
     const statusEl = document.getElementById("status");
 
@@ -139,44 +142,53 @@
     }
 
     paypal.Buttons({
-      createOrder: function(data, actions) {
-        const { name, email } = getFormData();
+    // Create the order on PayPal
+    createOrder: function (data, actions) {
+      const { name, email } = getFormData(); // <- this will alert if empty
 
-        // Create the order on PayPal
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: "1.00"
-            },
-            description: "Blockchain Engineering Bootcamp - Founding Cohort",
-            custom_id: JSON.stringify({ name, email }) // light metadata
-          }]
-        });
-      },
-      onApprove: function(data, actions) {
-      return actions.order.capture().then(function(details) {
-        statusEl.textContent = "Payment received! Check your email soon for onboarding.";
-
-        const { name, email } = getFormData();
-        const orderId = details.id;
-        const amount = details.purchase_units?.[0]?.amount?.value;
-        const status = details.status;
-
-        // 👉 SEND TO GOOGLE SHEET (replace URL)
-        fetch("https://script.google.com/macros/s/AKfycbzr7AC1EkvtNkBrEHs2_PBW-iMM40IJPw3VntzFxU4EHb8CU0D5GaxoFzbzGIGzUgdDMw/exec", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, orderId, amount, status })
-        }).catch(err => console.error("Sheet save error:", err));
-
-        console.log("Order details:", details);
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: "1.00"
+          },
+          description: "Blockchain Engineering Bootcamp - Founding Cohort",
+          custom_id: email // optional: store email on the order
+        }],
+        payer: {
+          name: {
+            given_name: name
+          },
+          email_address: email
+        }
       });
     },
-      onError: function(err) {
-        console.error(err);
-        statusEl.textContent = "Something went wrong with the payment. Please try again or contact us.";
-      }
-    }).render("#paypal-button-container");
+
+    // Capture the payment after the buyer approves
+    onApprove: function (data, actions) {
+      return actions.order.capture().then(function (details) {
+        // Here payment is successful
+        console.log("Payment completed", details);
+
+        // Simple UX: show a thank-you message or redirect
+        alert("Thanks " + details.payer.name.given_name + "! Your payment was successful.");
+
+        // Example redirect to a thank-you page:
+        window.location.href = "/thank-you.html";
+      });
+    },
+
+    // Handle errors / cancellations
+    onError: function (err) {
+      console.error("PayPal error", err);
+      alert("Something went wrong with PayPal. Please try again or contact support.");
+    },
+
+    onCancel: function (data) {
+      console.log("Payment cancelled", data);
+      // Optional: show a message
+    }
+
+  }).render('#paypal-button-container'); 
   </script>
 </body>
 </html>
