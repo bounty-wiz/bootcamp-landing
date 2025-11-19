@@ -21,7 +21,13 @@
     .muted { font-size: 0.85rem; color: #9ca3af; }
     ul { padding-left: 1.1rem; }
   </style>
+
+  <!-- PayPal Hosted Buttons SDK (Part 1 from PayPal) -->
+  <script 
+      src="https://www.paypal.com/sdk/js?client-id=BAA9_XElwSVbi6FczIsKWsiNw-o_RoPWyMsNUqMUkeTqtljiHGEgipD4_LCqZUuZbG9vshotgqIPGFLpkM&components=hosted-buttons&disable-funding=venmo&currency=USD">
+  </script>
 </head>
+
 <body>
   <div class="container">
     <!-- HERO -->
@@ -91,7 +97,7 @@
         <p class="price">$1</p>
         <p class="muted">One-time payment via PayPal. Limited seats to keep it hands-on.</p>
 
-        <!-- Simple signup form (replace action with your own Google Form / backend) -->
+        <!-- Signup form -->
         <form id="signup-form" style="margin-top: 1rem;">
           <div style="margin-bottom: 0.75rem;">
             <label for="name">Full name</label>
@@ -101,14 +107,16 @@
             <label for="email">Email</label>
             <input id="email" name="email" type="email" required />
           </div>
-          <p class="muted" style="margin-bottom: 0.75rem;">
-            Step 1: Fill your details · Step 2: Complete payment via PayPal · Step 3: You’ll receive an email with onboarding details.
-          </p>
         </form>
 
-        <!-- PayPal Button container -->
-        <div id="paypal-button-container"></div>
-        <p id="status" class="muted"></p>
+        <!-- PayPal Hosted Button container (Part 2 from PayPal) -->
+        <div id="paypal-container-F5HFP4VY6LFXW"></div>
+
+        <script>
+          paypal.HostedButtons({
+            hostedButtonId: "F5HFP4VY6LFXW"  // <---- Your hosted button ID
+          }).render("#paypal-container-F5HFP4VY6LFXW");
+        </script>
       </section>
     </div>
 
@@ -121,74 +129,5 @@
       <p class="muted">Weekly live sessions, office hours, and a real capstone project. All sessions are recorded.</p>
     </section>
   </div>
-
-  <!-- PayPal JS SDK: replace YOUR_CLIENT_ID and CURRENCY -->
-    <script
-        src="https://www.paypal.com/sdk/js?client-id=AZbz24mlJ9urygzu-wLGLH5XWwnsupcvh-gYZoFnE96HoAcFiqFAI-E8pr9hluiug5MIHX1bVCkakpiC&currency=USD&components=buttons"
-        data-sdk-integration-source="developer-studio"
-    ></script>
-  <script>
-    const statusEl = document.getElementById("status");
-
-    // Helper: validate that the user filled the form
-    function getFormData() {
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      if (!name || !email) {
-        alert("Please fill in your name and email before paying.");
-        throw new Error("Missing form data");
-      }
-      return { name, email };
-    }
-
-    paypal.Buttons({
-    // Create the order on PayPal
-    createOrder: function (data, actions) {
-      const { name, email } = getFormData(); // <- this will alert if empty
-
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: "1.00"
-          },
-          description: "Blockchain Engineering Bootcamp - Founding Cohort",
-          custom_id: email // optional: store email on the order
-        }],
-        payer: {
-          name: {
-            given_name: name
-          },
-          email_address: email
-        }
-      });
-    },
-
-    // Capture the payment after the buyer approves
-    onApprove: function (data, actions) {
-      return actions.order.capture().then(function (details) {
-        // Here payment is successful
-        console.log("Payment completed", details);
-
-        // Simple UX: show a thank-you message or redirect
-        alert("Thanks " + details.payer.name.given_name + "! Your payment was successful.");
-
-        // Example redirect to a thank-you page:
-        window.location.href = "/thank-you.html";
-      });
-    },
-
-    // Handle errors / cancellations
-    onError: function (err) {
-      console.error("PayPal error", err);
-      alert("Something went wrong with PayPal. Please try again or contact support.");
-    },
-
-    onCancel: function (data) {
-      console.log("Payment cancelled", data);
-      // Optional: show a message
-    }
-
-  }).render('#paypal-button-container'); 
-  </script>
 </body>
 </html>
