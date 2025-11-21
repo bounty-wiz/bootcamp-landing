@@ -213,6 +213,7 @@
             const amount = "1.00"; // bootcamp price in USD
 
             return actions.order.create({
+              intent: "CAPTURE",
               purchase_units: [{
                 amount: { value: amount },
                 description: "Blockchain Engineering Bootcamp - Founding Cohort",
