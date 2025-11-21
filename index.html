@@ -161,9 +161,6 @@
   </div>
 
   <script>
-    // Your Apps Script web app endpoint
-    const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbwORbHrdHnl3DMY3aK5MJyvw6htGl9rq0iSAmyIQlAQ_s9EJIvznIVZhdLU01o1xQgp7A/exec";
-
     const form = document.getElementById("signup-form");
     const continueBtn = document.getElementById("continue-btn");
     const statusMsg = document.getElementById("status-msg");
@@ -230,20 +227,6 @@
               const orderId = details.id;
               const amount  = details.purchase_units[0].amount.value;
               const status  = details.status; // usually "COMPLETED"
-
-              const formData = new FormData();
-              formData.append("name",  nameInput.value.trim());
-              formData.append("email", emailInput.value.trim());
-              formData.append("orderId", orderId);
-              formData.append("amount", amount);
-              formData.append("status", status);
-
-              // log to Google Sheets ONLY after successful payment
-              fetch(SHEET_ENDPOINT, {
-                method: "POST",
-                mode: "no-cors", // don't care about response, just fire-and-forget
-                body: formData,
-              });
 
               statusMsg.textContent = "Payment completed. You’re in! 🎉";
             });
