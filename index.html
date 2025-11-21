@@ -21,7 +21,6 @@
     .muted { font-size: 0.85rem; color: #9ca3af; }
     ul { padding-left: 1.1rem; }
 
-    /* New: buttons + hidden PayPal container */
     .primary-btn {
       width: 100%;
       margin-top: 1rem;
@@ -48,9 +47,9 @@
     }
   </style>
 
-  <!-- PayPal Hosted Buttons SDK -->
-  <script 
-    src="https://www.paypal.com/sdk/js?client-id=BAA9_XElwSVbi6FczIsKWsiNw-o_RoPWyMsNUqMUkeTqtljiHGEgipD4_LCqZUuZbG9vshotgqIPGFLpkM&components=hosted-buttons&disable-funding=venmo&currency=USD">
+  <!-- PayPal JS SDK (Smart Buttons / Orders API) -->
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=AT4LZwcIV1do-qhJjds8Olz5pKfV66-GCu4UE60kryzk1MAT6Sb19LDNMu9lcHNBh4juZEVQ_QA4H2D1&currency=USD">
   </script>
 </head>
 
@@ -137,15 +136,15 @@
           </div>
         </form>
 
-        <!-- Step 1: continue button (validate + send to Sheets) -->
+        <!-- Step 1: continue button (only validates + reveals PayPal buttons) -->
         <button id="continue-btn" class="primary-btn">
           Continue to payment
         </button>
         <p id="status-msg" class="muted" style="margin-top:0.5rem;"></p>
 
-        <!-- Step 2: PayPal Hosted Button (initially hidden) -->
-        <div id="paypal-wrapper" class="hidden" style="margin-top: 1rem;">
-          <div id="paypal-container-QSZHHPYBSGMEE"></div>
+        <!-- Step 2: PayPal Smart Buttons (hidden until form is valid) -->
+        <div id="paypal-buttons-container" class="hidden" style="margin-top: 1rem;">
+          <div id="paypal-buttons"></div>
         </div>
 
       </section>
@@ -162,18 +161,20 @@
   </div>
 
   <script>
-    // TODO: replace with your real Apps Script web app URL
-    const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbwORbHrdHnl3DMY3aK5MJyvw6htGl9rq0iSAmyIQlAQ_s9EJIvznIVZhdLU01o1xQgp7A/exec";
+    // Your Apps Script web app endpoint
+    const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbzr7AC1EkvtNkBrEHs2_PBW-iMM40IJPw3VntzFxU4EHb8CU0D5GaxoFzbzGIGzUgdDMw/exec";
 
     const form = document.getElementById("signup-form");
     const continueBtn = document.getElementById("continue-btn");
     const statusMsg = document.getElementById("status-msg");
-    const paypalWrapper = document.getElementById("paypal-wrapper");
+    const paypalButtonsContainer = document.getElementById("paypal-buttons-container");
 
     const nameInput = document.getElementById("name");
     const emailInput = document.getElementById("email");
     const nameError = document.getElementById("name-error");
     const emailError = document.getElementById("email-error");
+
+    let paypalRendered = false;
 
     function validateForm() {
       let valid = true;
@@ -199,33 +200,68 @@
       statusMsg.textContent = "";
       if (!validateForm()) return;
 
+      // disable so user can't spam
       continueBtn.disabled = true;
-      statusMsg.textContent = "Saving your details...";
+      statusMsg.textContent = "Great, now complete your payment below.";
 
-      // Send data to Google Sheets
-      const formData = new FormData();
-      formData.append("name", nameInput.value.trim());
-      formData.append("email", emailInput.value.trim());
+      // show PayPal buttons container
+      paypalButtonsContainer.classList.remove("hidden");
 
-      fetch(SHEET_ENDPOINT, {
-        method: "POST",
-        mode: "no-cors", // Apps Script often needs no-cors
-        body: formData,
-      }).then(() => {
-        // We can't read the response in no-cors mode, but we assume success
-        statusMsg.textContent = "Details saved. You can now complete the payment.";
-        paypalWrapper.classList.remove("hidden");
+      // render PayPal buttons once
+      if (!paypalRendered) {
+        paypalRendered = true;
 
-        // Render PayPal button ONLY now
-        paypal.HostedButtons({
-          hostedButtonId: "QSZHHPYBSGMEE",
-        }).render("#paypal-container-QSZHHPYBSGMEE");
+        paypal.Buttons({
+          createOrder: function (data, actions) {
+            const amount = "1.00"; // bootcamp price in USD
 
-      }).catch((err) => {
-        console.error("Error sending to Sheets:", err);
-        statusMsg.textContent = "Something went wrong saving your details. Please try again.";
-        continueBtn.disabled = false;
-      });
+            return actions.order.create({
+              purchase_units: [{
+                amount: { value: amount },
+                description: "Blockchain Engineering Bootcamp - Founding Cohort",
+                // optional metadata:
+                custom_id: `bootcamp_${Date.now()}`
+              }]
+            });
+          },
+
+          onApprove: function (data, actions) {
+            return actions.order.capture().then(function (details) {
+              const orderId = details.id;
+              const amount  = details.purchase_units[0].amount.value;
+              const status  = details.status; // usually "COMPLETED"
+
+              const formData = new FormData();
+              formData.append("name",  nameInput.value.trim());
+              formData.append("email", emailInput.value.trim());
+              formData.append("orderId", orderId);
+              formData.append("amount", amount);
+              formData.append("status", status);
+
+              // log to Google Sheets ONLY after successful payment
+              fetch(SHEET_ENDPOINT, {
+                method: "POST",
+                mode: "no-cors", // don't care about response, just fire-and-forget
+                body: formData,
+              });
+
+              statusMsg.textContent = "Payment completed. You’re in! 🎉";
+            });
+          },
+
+          onCancel: function () {
+            statusMsg.textContent = "Payment cancelled. You can try again.";
+            continueBtn.disabled = false;
+          },
+
+          onError: function (err) {
+            console.error("PayPal error:", err);
+            statusMsg.textContent = "Something went wrong with PayPal. Please refresh and try again.";
+            continueBtn.disabled = false;
+          }
+
+        }).render("#paypal-buttons");
+      }
     });
   </script>
 </body>
