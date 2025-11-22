@@ -61,8 +61,8 @@
       <h1>Blockchain Engineering Bootcamp</h1>
       <p>Go from “I can write Solidity” to “I can reason about nodes, transactions, and production-grade systems across chains.”</p>
       <div style="margin-top: 0.75rem;">
-        <span class="pill">Live & project-based</span>
-        <span class="pill">Small group</span>
+        <span class="pill">Reading + code, no videos</span>
+        <span class="pill">2×40-min live calls / week</span>
         <span class="pill">For experienced devs</span>
       </div>
     </section>
@@ -71,56 +71,79 @@
       <!-- LEFT: CURRICULUM -->
       <section class="card">
         <h2>Curriculum overview</h2>
-        <p class="muted">Exact topics may be adjusted based on the cohort’s level, but the structure will look like this:</p>
+        <p class="muted">
+          6 weeks of written lessons and code examples. No pre-recorded videos —
+          you’ll read, code, and ship. The exact depth can shift based on the cohort,
+          but the spine looks like this:
+        </p>
 
-        <h3>Week 1 – Ethereum & node internals</h3>
+        <h3>Week 1 – Ethereum internals & nodes</h3>
         <ul>
-          <li>How Ethereum clients actually work (Geth, Erigon, Nethermind)</li>
-          <li>Transactions, mempools, and state transitions in detail</li>
-          <li>Hands-on: run a local node, inspect blocks & traces</li>
+          <li>Execution vs consensus, blocks, mempools, forks.</li>
+          <li>Node types: full, archive, light — and what providers actually run.</li>
+          <li>Running Anvil vs Geth dev mode, comparing RPC behaviour.</li>
+          <li>Hands-on: inspect blocks, txs, txpool; connect clients to real RPCs.</li>
         </ul>
 
-        <h3>Week 2 – Smart contract execution & security</h3>
+        <h3>Week 2 – Smart contracts & the EVM</h3>
         <ul>
-          <li>EVM execution model and gas</li>
-          <li>Common pitfalls & real-world vulnerabilities</li>
-          <li>Hands-on: write, test, and break contracts with Foundry</li>
+          <li>Solidity fundamentals with a focus on <em>how</em> it compiles down.</li>
+          <li>ABI encoding, calldata layout, storage slots, logs/events.</li>
+          <li>Gas, reverts, error handling and common footguns.</li>
+          <li>Hands-on: ERC-20 + ERC-721, tests and scripts with Foundry.</li>
         </ul>
 
-        <h3>Week 3 – DeFi, DEXs, and aggregators</h3>
+        <h3>Week 3 – Transactions & messages</h3>
         <ul>
-          <li>How AMMs & DEXs actually work under the hood</li>
-          <li>Building a minimal Uniswap-style swap flow</li>
-          <li>Hands-on: implement a simple price routing / aggregation logic</li>
+          <li>Transaction structure: nonce, gas, fees, access lists, chainId.</li>
+          <li>Legacy, EIP-2930, EIP-1559, EIP-4844, and EIP-7702 set-code txs.</li>
+          <li>RLP serialization and how wallets build & sign raw txs.</li>
+          <li>Off-chain messages: EIP-191 / EIP-712, signing and verification.</li>
         </ul>
 
-        <h3>Week 4 – Cross-chain & infrastructure</h3>
+        <h3>Week 4 – On-chain activity & debugging</h3>
         <ul>
-          <li>RPC providers, reliability, and monitoring</li>
-          <li>Cross-chain messaging and bridging patterns</li>
-          <li>Hands-on: build infra scripts in Go / TS</li>
+          <li>Event/log encoding, topics, indexed vs non-indexed params.</li>
+          <li>Decoding real logs by hand and with code.</li>
+          <li>Internal calls & “hidden” ETH transfers via traces.</li>
+          <li>Hands-on: use <code>debug_trace*</code> to explain weird production txs.</li>
         </ul>
 
-        <h3>Week 5 – Production patterns</h3>
+        <h3>Week 5 – Batching, streaming & monitoring</h3>
         <ul>
-          <li>Signature verification & EIP-712</li>
-          <li>Batching, multicalls, and gas optimization</li>
-          <li>Hands-on: production-ready deployment pipeline</li>
+          <li>JSON-RPC batching, Multicall patterns, performance trade-offs.</li>
+          <li>WebSockets and <code>eth_subscribe</code> for live feeds.</li>
+          <li>Designing a small indexer + SQLite/Postgres backend.</li>
+          <li>Hands-on: build a service that tracks transfers and contract activity.</li>
         </ul>
 
-        <h3>Week 6 – Capstone project</h3>
+        <h3>Week 6 – Mini DEX + real-time dashboard</h3>
         <ul>
-          <li>Design & build a real-world dApp or protocol component</li>
-          <li>Code review, architecture feedback, and deployment</li>
-          <li>Final presentation + next-steps roadmap</li>
+          <li>Design and implement a simple AMM-style pool contract.</li>
+          <li>Emit clean events and index them in your backend.</li>
+          <li>Expose REST endpoints for volume, swaps, pool state, user history.</li>
+          <li>Build a minimal frontend that connects a wallet, swaps, and shows live stats.</li>
         </ul>
+
+        <p class="muted" style="margin-top:1rem;">
+          By the end you’ll have a small but real vertical slice of a Web3 product:
+          contracts, backend, indexing, monitoring, and a UI.
+        </p>
       </section>
 
       <!-- RIGHT: SIGNUP + PAYPAL -->
       <section class="card">
         <h2>Join the next cohort</h2>
         <p class="price">$1</p>
-        <p class="muted">One-time payment via PayPal. Limited seats to keep it hands-on.</p>
+        <p class="muted">
+          One-time payment via PayPal. This is a test price for the founding cohort
+          — future cohorts will be closer to the real value (~$499).
+        </p>
+        <p class="muted" style="margin-top:0.5rem;">
+          Format: written lessons + code examples, 2×40-min live calls per week,
+          and private text support for questions and debugging. No video library
+          to binge, just focused engineering work.
+        </p>
 
         <!-- Step 1: continue button (only validates + reveals PayPal buttons) -->
         <button id="continue-btn" class="primary-btn">
@@ -138,11 +161,37 @@
 
     <section style="margin-top: 2rem;" class="card">
       <h2>FAQ</h2>
-      <h3>Who is this for?</h3>
-      <p class="muted">Experienced developers (backend, fullstack, or Web3) who want to deeply understand how blockchains actually work and ship production-grade systems.</p>
 
       <h3>What’s the format?</h3>
-      <p class="muted">Weekly live sessions, office hours, and a real capstone project. All sessions are recorded.</p>
+      <p class="muted">
+        This is not a “watch 40 hours of videos and forget everything” course.
+        You get written lessons, code examples, and exercises you run locally.
+        Each week we meet for two 40-minute live calls (Q&amp;A, debugging, code review),
+        plus you can message me privately for help between sessions.
+      </p>
+
+      <h3>Who is this for?</h3>
+      <p class="muted">
+        Experienced developers (backend, full-stack, or Web3) who want to
+        understand how the chain actually behaves in production — beyond tutorials
+        and toy contracts. You should already be comfortable with at least one
+        programming language and basic Ethereum concepts.
+      </p>
+
+      <h3>What will I be able to do at the end?</h3>
+      <p class="muted">
+        You’ll know how to reason about nodes, RPC, transactions, calldata,
+        logs, traces, and monitoring. You’ll have built a small AMM-style DEX
+        with a real backend and dashboard — the same architecture patterns many
+        production Web3 products use.
+      </p>
+
+      <h3>Will there be recordings?</h3>
+      <p class="muted">
+        Live calls are recorded for you, but there is no big pre-recorded
+        “video course”. The core of the bootcamp is the written material,
+        code, and the feedback loop between what you build and what we debug together.
+      </p>
     </section>
   </div>
 
