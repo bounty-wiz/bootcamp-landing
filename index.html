@@ -72,7 +72,7 @@
       <section class="card">
         <h2>Curriculum overview</h2>
         <p class="muted">
-          6 weeks of written lessons and code examples. No pre-recorded videos —
+          6 weeks of written lessons and code examples. No pre-recorded videos
           you’ll read, code, and ship. The exact depth can shift based on the cohort,
           but the spine looks like this:
         </p>
@@ -80,7 +80,7 @@
         <h3>Week 1 – Ethereum internals & nodes</h3>
         <ul>
           <li>Execution vs consensus, blocks, mempools, forks.</li>
-          <li>Node types: full, archive, light — and what providers actually run.</li>
+          <li>Node types: full, archive, light and what providers actually run.</li>
           <li>Running Anvil vs Geth dev mode, comparing RPC behaviour.</li>
           <li>Hands-on: inspect blocks, txs, txpool; connect clients to real RPCs.</li>
         </ul>
@@ -90,18 +90,28 @@
           <li>Solidity fundamentals with a focus on <em>how</em> it compiles down.</li>
           <li>ABI encoding, calldata layout, storage slots, logs/events.</li>
           <li>Gas, reverts, error handling and common footguns.</li>
-          <li>Hands-on: ERC-20 + ERC-721, tests and scripts with Foundry.</li>
+          <li>Hands-on: ERC-20, smart contracts, tests and scripts with Foundry.</li>
         </ul>
 
-        <h3>Week 3 – Transactions & messages</h3>
+        <h3>Week 3-4 – Transactions & messages</h3>
         <ul>
           <li>Transaction structure: nonce, gas, fees, access lists, chainId.</li>
-          <li>Legacy, EIP-2930, EIP-1559, EIP-4844, and EIP-7702 set-code txs.</li>
-          <li>RLP serialization and how wallets build & sign raw txs.</li>
-          <li>Off-chain messages: EIP-191 / EIP-712, signing and verification.</li>
+          <li>RLP serialization and how wallets build & sign raw txs</li>
+          <li>Transaction Types:</li>
+          <ul>
+            <li>Legacy</li>
+            <li>Access List Transactions - EIP-2930</li>
+            <li>Dynamic Fee Transactions - EIP-1559</li>
+            <li>Set-Code Transactions - EIP-7702</li>
+          </ul>
+          <li>Off-chain message Types:</li>
+          <ul>
+            <li>Personal Sign - EIP-191</li>
+            <li>Typed Data Sign + Verification - EIP-712</li>
+          </ul>
         </ul>
 
-        <h3>Week 4 – On-chain activity & debugging</h3>
+        <h3>Week 4-5 – On-chain activity & debugging</h3>
         <ul>
           <li>Event/log encoding, topics, indexed vs non-indexed params.</li>
           <li>Decoding real logs by hand and with code.</li>
@@ -109,7 +119,7 @@
           <li>Hands-on: use <code>debug_trace*</code> to explain weird production txs.</li>
         </ul>
 
-        <h3>Week 5 – Batching, streaming & monitoring</h3>
+        <h3>Week 5-6 – Batching, streaming & monitoring</h3>
         <ul>
           <li>JSON-RPC batching, Multicall patterns, performance trade-offs.</li>
           <li>WebSockets and <code>eth_subscribe</code> for live feeds.</li>
