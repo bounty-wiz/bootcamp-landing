@@ -170,32 +170,43 @@
 
       <!-- RIGHT: SIGNUP + PAYPAL -->
       <section class="card">
-        <h2>Join the next cohort</h2>
-        <p class="price">$499</p>
+      <h2>Join the next cohort</h2>
+      <p class="price">$499</p>
 
+      <p class="muted">
+        Early-bird price for the founding cohort. Future cohorts will be priced higher
+        as the curriculum expands and materials grow.
+      </p>
+
+      <p class="muted" style="margin-top:0.5rem;">
+        This bootcamp is fully hands-on: weekly written lessons, deep code examples,
+        two 40-minute live calls with me each week, and private text support whenever
+        you get stuck.
+      </p>
+
+      <p class="muted" style="margin-top:1rem;">Complete your payment below:</p>
+
+      <!-- PayPal Buttons -->
+      <div id="paypal-buttons-container" style="margin-top: 1rem;">
+        <div id="paypal-buttons"></div>
+      </div>
+
+      <!-- SUCCESS PANEL -->
+      <div id="success-panel" class="hidden" style="margin-top:1.5rem;">
+        <h3 style="margin-bottom:0.25rem;">You’re in the bootcamp 🎉</h3>
         <p class="muted">
-          Early-bird price for the founding cohort. Future cohorts will be priced higher
-          as the curriculum expands and materials grow.
+          Your payment was received successfully. You’ll receive an email shortly with:
         </p>
-
-        <p class="muted" style="margin-top:0.5rem;">
-          This bootcamp is fully hands-on: weekly written lessons, deep code examples,
-          two 40-minute live calls with me each week, and private text support whenever
-          you get stuck.
+        <ul class="muted">
+          <li>Bootcamp start date & time</li>
+          <li>Links to the written materials</li>
+          <li>Calendar invites for the live calls</li>
+        </ul>
+        <p class="muted">
+          If you don’t see the email within 10–15 minutes, check spam or message me directly.
         </p>
-
-        <!-- Step 1: continue button (only validates + reveals PayPal buttons) -->
-        <button id="continue-btn" class="primary-btn">
-          Continue to payment
-        </button>
-        <p id="status-msg" class="muted" style="margin-top:0.5rem;"></p>
-
-        <!-- Step 2: PayPal Smart Buttons (hidden until form is valid) -->
-        <div id="paypal-buttons-container" class="hidden" style="margin-top: 1rem;">
-          <div id="paypal-buttons"></div>
-        </div>
-
-      </section>
+      </div>
+    </section>
     </div>
 
     <section style="margin-top: 2rem;" class="card">
@@ -235,63 +246,31 @@
   </div>
 
   <script>
-    const form = document.getElementById("signup-form");
     const continueBtn = document.getElementById("continue-btn");
     const statusMsg = document.getElementById("status-msg");
     const paypalButtonsContainer = document.getElementById("paypal-buttons-container");
-
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const nameError = document.getElementById("name-error");
-    const emailError = document.getElementById("email-error");
+    const successPanel = document.getElementById("success-panel");
 
     let paypalRendered = false;
 
-    function validateForm() {
-      let valid = true;
-
-      if (!nameInput.value.trim()) {
-        nameError.classList.remove("hidden");
-        valid = false;
-      } else {
-        nameError.classList.add("hidden");
-      }
-
-      if (!emailInput.value.trim() || !emailInput.checkValidity()) {
-        emailError.classList.remove("hidden");
-        valid = false;
-      } else {
-        emailError.classList.add("hidden");
-      }
-
-      return valid;
-    }
-
     continueBtn.addEventListener("click", function () {
-      statusMsg.textContent = "";
-      if (!validateForm()) return;
-
-      // disable so user can't spam
-      continueBtn.disabled = true;
       statusMsg.textContent = "Great, now complete your payment below.";
 
-      // show PayPal buttons container
+      continueBtn.disabled = true;
       paypalButtonsContainer.classList.remove("hidden");
 
-      // render PayPal buttons once
       if (!paypalRendered) {
         paypalRendered = true;
 
         paypal.Buttons({
           createOrder: function (data, actions) {
-            const amount = "1.00"; // bootcamp price in USD
+            const amount = "1.00"; // <-- Change to "499.00" when you go live
 
             return actions.order.create({
               intent: "CAPTURE",
               purchase_units: [{
                 amount: { value: amount },
                 description: "Blockchain Engineering Bootcamp - Founding Cohort",
-                // optional metadata:
                 custom_id: `bootcamp_${Date.now()}`
               }]
             });
@@ -299,11 +278,15 @@
 
           onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
-              const orderId = details.id;
-              const amount  = details.purchase_units[0].amount.value;
-              const status  = details.status; // usually "COMPLETED"
 
+              // Hide payment UI
+              paypalButtonsContainer.classList.add("hidden");
+              continueBtn.style.display = "none";
+
+              // Show success panel
               statusMsg.textContent = "Payment completed. You’re in! 🎉";
+              successPanel.classList.remove("hidden");
+              successPanel.scrollIntoView({ behavior: "smooth" });
             });
           },
 
@@ -314,7 +297,7 @@
 
           onError: function (err) {
             console.error("PayPal error:", err);
-            statusMsg.textContent = "Something went wrong with PayPal. Please refresh and try again.";
+            statusMsg.textContent = "Something went wrong. Please refresh and try again.";
             continueBtn.disabled = false;
           }
 
