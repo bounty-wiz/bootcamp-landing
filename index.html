@@ -78,44 +78,87 @@
 
       <h3>Week 1 — Ethereum internals</h3>
       <ul>
-        <li>How nodes really work (Geth, Erigon, Anvil).</li>
-        <li>Blocks, mempools, forks, and RPC behaviour.</li>
-        <li>Hands-on: run clients, inspect state, debug real txs.</li>
+        <li>What is Ethereum? Execution vs Consensus layers</li>
+        <li>What are Blocks, Transactions and Mempools</li>
+        <li>What are node providers(For example ChainStack) and how to use them</li>
+        <li>What are Nodes and how they really work (Geth, Erigon, Anvil)</li>
+        <li>Get Familiar with EVM Developer Tools</li>
+        <li>Hands-on:</li>
+        <ul>
+          <li>Install Foundry</li>
+          <li>Start Foundry Project: Run Anvil, Explore default accounts, decode with cast tool</li>
+          <li>run clients, inspect state, debug real txs</li>
+        </ul>
       </ul>
 
-      <h3>Week 2 — Smart contracts & the EVM</h3>
+      <h3>Week 2 — Wallets, Smart contracts & the EVM</h3>
       <ul>
-        <li>ABI, calldata, storage, logs, gas, reverts.</li>
-        <li>Hands-on: write + test ERC-20 / ERC-721 with Foundry.</li>
+        <li>Solidity basics: state vars, functions, modifiers, events</li>
+        <li>ABI, calldata, storage, logs, gas, errors & reverts.</li>
         <li>Understand how Solidity compiles to opcodes.</li>
+        <li>What are wallets</li>
+        <li>What are wallet providers</li>
+        <li>Hands-on:</li>
+        <ul>
+          <li>Generate local wallet</li>
+          <li>Setup 3rd party wallet</li>
+          <li>Write + test ERC-20 with Foundry</li>
+          <li>Execute Transactions on the deployed contracts</li>
+        </ul>
       </ul>
 
       <h3>Week 3 — Transactions deep-dive</h3>
       <ul>
-        <li>Transaction structure, gas, fees, replay protection.</li>
-        <li>Legacy, EIP-2930, EIP-1559, EIP-7702.</li>
-        <li>Hands-on: build & sign raw transactions manually.</li>
+        <li>RLP serialization basics.</li>
+        <li>Transaction structure, gas, fees, replay protection</li>
+        <li>Transaction types:</li>
+        <ul>  
+          <li>Legacy Transaction</li>
+          <li>Access List Transaction (EIP-2930)</li>
+          <li>Dynamic Fee Transaction (EIP-1559)</li>
+          <li>Set-Code Transaction (EIP-7702)</li>
+        </ul>
+        <li>Hands-on:</li>
+        <ul>
+          <li>Build, sign and publish raw transactions in Go</li>
+          <li>Send raw transactions to a local Anvil node</li>
+        </ul>
       </ul>
 
       <h3>Week 4 — Messages & signing</h3>
       <ul>
-        <li>RLP serialization basics.</li>
-        <li>EIP-191 and EIP-712 signing + verification.</li>
-        <li>Hands-on: implement sign/verify in Go or TS.</li>
+        <li>Off-chain Messages:</li>
+        <ul>
+          <li>What are off-chain messages</li>
+          <li>Use cases of off-chain messages</li>
+          <li>Personal Sign Messages + EIP-191</li>
+          <li>SignTypedData Message + EIP-712 signing + verification.</li>
+        </ul>
+        <li>On-chain Transactions Vs Off-chain Messages</li>
+        <li>Hands-on:</li>
+        <ul>
+          <li>Implement EIP-191 personal_sign + verify in Go</li>
+          <li>Implement EIP-712 signTypedData + verify in Go</li>
+        </ul>
       </ul>
 
-      <h3>Week 5 — On-chain activity & monitoring</h3>
+      <h3>Week 5 — Batching, On-chain activity & monitoring</h3>
       <ul>
         <li>Events, logs, topics, and internal calls.</li>
         <li>Tracing hidden transfers with <code>debug_trace*</code>.</li>
         <li>Batching, multicall, and WebSocket subscriptions.</li>
+        <li>Hands-on:</li>
+        <ul>
+            <li>Build small block explorer that indexes events + traces</li>
+            <li>Build a transaction monitor that tracks tx status + internal calls</li>
+        </ul>
       </ul>
 
       <h3>Week 6 — Mini DEX + real-time dashboard</h3>
       <ul>
-        <li>Build a simple AMM-style pool contract.</li>
-        <li>Index events into a backend (SQLite/Postgres).</li>
-        <li>Expose REST endpoints + build a live dashboard.</li>
+        <li>Build a simple AMM-style pool contract</li>
+        <li>Index events into a backend + Postgres integration</li>
+        <li>Expose REST endpoints + build a live dashboard</li>
       </ul>
 
       <p class="muted" style="margin-top:1rem;">
