@@ -72,141 +72,141 @@
     <div class="grid grid-2">
       <!-- LEFT: CURRICULUM -->
       <section class="card">
-      <h2>Curriculum overview</h2>
-      <p class="muted">
-        6 weeks of written lessons and code examples — no videos. You’ll read, code, debug,
-        and ship real things. Here's the high-level structure:
-      </p>
+        <h2>Curriculum overview</h2>
+        <p class="muted">
+          6 weeks of written lessons and code examples — no videos. You’ll read, code, debug,
+          and ship real things. Here's the high-level structure:
+        </p>
 
-      <h3>Week 1 — Ethereum internals</h3>
-      <ul>
-        <li>What is Ethereum? Execution vs Consensus layers</li>
-        <li>What are Blocks, Transactions and Mempools</li>
-        <li>What are node providers(For example ChainStack) and how to use them</li>
-        <li>What are Nodes and how they really work (Geth, Erigon, Anvil)</li>
-        <li>Get Familiar with EVM Developer Tools</li>
-        <li>Hands-on:</li>
+        <h3>Week 1 — Ethereum internals</h3>
         <ul>
-          <li>Install Foundry</li>
-          <li>Start Foundry Project: Run Anvil, Explore default accounts, decode with cast tool</li>
-          <li>run clients, inspect state, debug real txs</li>
+          <li>What is Ethereum? Execution vs Consensus layers</li>
+          <li>What are Blocks, Transactions and Mempools</li>
+          <li>What are node providers(For example ChainStack) and how to use them</li>
+          <li>What are Nodes and how they really work (Geth, Erigon, Anvil)</li>
+          <li>Get Familiar with EVM Developer Tools</li>
+          <li>Hands-on:</li>
+          <ul>
+            <li>Install Foundry</li>
+            <li>Start Foundry Project: Run Anvil, Explore default accounts, decode with cast tool</li>
+            <li>run clients, inspect state, debug real txs</li>
+          </ul>
         </ul>
-      </ul>
 
-      <h3>Week 2 — Wallets, Smart contracts & the EVM</h3>
-      <ul>
-        <li>Solidity basics: state vars, functions, modifiers, events</li>
-        <li>ABI, calldata, storage, logs, gas, errors & reverts.</li>
-        <li>Understand how Solidity compiles to opcodes.</li>
-        <li>What are wallets</li>
-        <li>What are wallet providers</li>
-        <li>Hands-on:</li>
+        <h3>Week 2 — Wallets, Smart contracts & the EVM</h3>
         <ul>
-          <li>Generate local wallet</li>
-          <li>Setup 3rd party wallet</li>
-          <li>Write + test ERC-20 with Foundry</li>
-          <li>Execute Transactions on the deployed contracts</li>
+          <li>Solidity basics: state vars, functions, modifiers, events</li>
+          <li>ABI, calldata, storage, logs, gas, errors & reverts.</li>
+          <li>Understand how Solidity compiles to opcodes.</li>
+          <li>What are wallets</li>
+          <li>What are wallet providers</li>
+          <li>Hands-on:</li>
+          <ul>
+            <li>Generate local wallet</li>
+            <li>Setup 3rd party wallet</li>
+            <li>Write + test ERC-20 with Foundry</li>
+            <li>Execute Transactions on the deployed contracts</li>
+          </ul>
         </ul>
-      </ul>
 
-      <h3>Week 3 — Transactions deep-dive</h3>
-      <ul>
-        <li>RLP serialization basics.</li>
-        <li>Transaction structure, gas, fees, replay protection</li>
-        <li>Transaction types:</li>
-        <ul>  
-          <li>Legacy Transaction</li>
-          <li>Access List Transaction (EIP-2930)</li>
-          <li>Dynamic Fee Transaction (EIP-1559)</li>
-          <li>Set-Code Transaction (EIP-7702)</li>
-        </ul>
-        <li>Hands-on:</li>
+        <h3>Week 3 — Transactions deep-dive</h3>
         <ul>
-          <li>Build, sign and publish raw transactions in Go</li>
-          <li>Send raw transactions to a local Anvil node</li>
+          <li>RLP serialization basics.</li>
+          <li>Transaction structure, gas, fees, replay protection</li>
+          <li>Transaction types:</li>
+          <ul>  
+            <li>Legacy Transaction</li>
+            <li>Access List Transaction (EIP-2930)</li>
+            <li>Dynamic Fee Transaction (EIP-1559)</li>
+            <li>Set-Code Transaction (EIP-7702)</li>
+          </ul>
+          <li>Hands-on:</li>
+          <ul>
+            <li>Build, sign and publish raw transactions in Go</li>
+            <li>Send raw transactions to a local Anvil node</li>
+          </ul>
         </ul>
-      </ul>
 
-      <h3>Week 4 — Messages & signing</h3>
-      <ul>
-        <li>Off-chain Messages:</li>
+        <h3>Week 4 — Messages & signing</h3>
         <ul>
-          <li>What are off-chain messages</li>
-          <li>Use cases of off-chain messages</li>
-          <li>Personal Sign Messages + EIP-191</li>
-          <li>SignTypedData Message + EIP-712 signing + verification.</li>
+          <li>Off-chain Messages:</li>
+          <ul>
+            <li>What are off-chain messages</li>
+            <li>Use cases of off-chain messages</li>
+            <li>Personal Sign Messages + EIP-191</li>
+            <li>SignTypedData Message + EIP-712 signing + verification.</li>
+          </ul>
+          <li>On-chain Transactions Vs Off-chain Messages</li>
+          <li>Hands-on:</li>
+          <ul>
+            <li>Implement EIP-191 personal_sign + verify in Go</li>
+            <li>Implement EIP-712 signTypedData + verify in Go</li>
+          </ul>
         </ul>
-        <li>On-chain Transactions Vs Off-chain Messages</li>
-        <li>Hands-on:</li>
+
+        <h3>Week 5 — Batching, On-chain activity & monitoring</h3>
         <ul>
-          <li>Implement EIP-191 personal_sign + verify in Go</li>
-          <li>Implement EIP-712 signTypedData + verify in Go</li>
+          <li>Events, logs, topics, and internal calls.</li>
+          <li>Tracing hidden transfers with <code>debug_trace*</code>.</li>
+          <li>Batching, multicall, and WebSocket subscriptions.</li>
+          <li>Hands-on:</li>
+          <ul>
+              <li>Build small block explorer that indexes events + traces</li>
+              <li>Build a transaction monitor that tracks tx status + internal calls</li>
+          </ul>
         </ul>
-      </ul>
 
-      <h3>Week 5 — Batching, On-chain activity & monitoring</h3>
-      <ul>
-        <li>Events, logs, topics, and internal calls.</li>
-        <li>Tracing hidden transfers with <code>debug_trace*</code>.</li>
-        <li>Batching, multicall, and WebSocket subscriptions.</li>
-        <li>Hands-on:</li>
+        <h3>Week 6 — Mini DEX + real-time dashboard</h3>
         <ul>
-            <li>Build small block explorer that indexes events + traces</li>
-            <li>Build a transaction monitor that tracks tx status + internal calls</li>
+          <li>Build a simple AMM-style pool contract</li>
+          <li>Index events into a backend + Postgres integration</li>
+          <li>Expose REST endpoints + build a live dashboard</li>
         </ul>
-      </ul>
 
-      <h3>Week 6 — Mini DEX + real-time dashboard</h3>
-      <ul>
-        <li>Build a simple AMM-style pool contract</li>
-        <li>Index events into a backend + Postgres integration</li>
-        <li>Expose REST endpoints + build a live dashboard</li>
-      </ul>
-
-      <p class="muted" style="margin-top:1rem;">
-        By the end, you’ll ship a real vertical slice: contracts, backend, monitoring, and UI.
-      </p>
-    </section>
+        <p class="muted" style="margin-top:1rem;">
+          By the end, you’ll ship a real vertical slice: contracts, backend, monitoring, and UI.
+        </p>
+      </section>
 
       <!-- RIGHT: SIGNUP + PAYPAL -->
       <section class="card">
-      <h2>Join the next cohort</h2>
-      <p class="price">$499</p>
+        <h2>Join the next cohort</h2>
+        <p class="price">$499</p>
 
-      <p class="muted">
-        Early-bird price for the founding cohort. Future cohorts will be priced higher
-        as the curriculum expands and materials grow.
-      </p>
-
-      <p class="muted" style="margin-top:0.5rem;">
-        This bootcamp is fully hands-on: weekly written lessons, deep code examples,
-        two 40-minute live calls with me each week, and private text support whenever
-        you get stuck.
-      </p>
-
-      <p class="muted" style="margin-top:1rem;">Complete your payment below:</p>
-
-      <!-- PayPal Buttons -->
-      <div id="paypal-buttons-container" style="margin-top: 1rem;">
-        <div id="paypal-buttons"></div>
-      </div>
-
-      <!-- SUCCESS PANEL -->
-      <div id="success-panel" class="hidden" style="margin-top:1.5rem;">
-        <h3 style="margin-bottom:0.25rem;">You’re in the bootcamp 🎉</h3>
         <p class="muted">
-          Your payment was received successfully. You’ll receive an email shortly with:
+          Early-bird price for the founding cohort. Future cohorts will be priced higher
+          as the curriculum expands and materials grow.
         </p>
-        <ul class="muted">
-          <li>Bootcamp start date & time</li>
-          <li>Links to the written materials</li>
-          <li>Calendar invites for the live calls</li>
-        </ul>
-        <p class="muted">
-          If you don’t see the email within 10–15 minutes, check spam or message me directly.
+
+        <p class="muted" style="margin-top:0.5rem;">
+          This bootcamp is fully hands-on: weekly written lessons, deep code examples,
+          two 40-minute live calls with me each week, and private text support whenever
+          you get stuck.
         </p>
-      </div>
-    </section>
+
+        <p class="muted" style="margin-top:1rem;">Complete your payment below:</p>
+
+        <!-- PayPal Buttons -->
+        <div id="paypal-buttons-container" style="margin-top: 1rem;">
+          <div id="paypal-buttons"></div>
+        </div>
+
+        <!-- SUCCESS PANEL -->
+        <div id="success-panel" class="hidden" style="margin-top:1.5rem;">
+          <h3 style="margin-bottom:0.25rem;">You’re in the bootcamp 🎉</h3>
+          <p class="muted">
+            Your payment was received successfully. You’ll receive an email shortly with:
+          </p>
+          <ul class="muted">
+            <li>Bootcamp start date &amp; time</li>
+            <li>Links to the written materials</li>
+            <li>Calendar invites for the live calls</li>
+          </ul>
+          <p class="muted">
+            If you don’t see the email within 10–15 minutes, check spam or message me directly.
+          </p>
+        </div>
+      </section>
     </div>
 
     <section style="margin-top: 2rem;" class="card">
@@ -232,7 +232,7 @@
       <p class="muted">
         You’ll know how to reason about nodes, RPC, transactions, calldata,
         logs, traces, and monitoring. You’ll have built a small AMM-style DEX
-        with a real backend and dashboard the same architecture patterns many
+        with a real backend and dashboard — the same architecture patterns many
         production Web3 products use.
       </p>
 
@@ -246,64 +246,41 @@
   </div>
 
   <script>
-    const continueBtn = document.getElementById("continue-btn");
-    const statusMsg = document.getElementById("status-msg");
     const paypalButtonsContainer = document.getElementById("paypal-buttons-container");
     const successPanel = document.getElementById("success-panel");
 
-    let paypalRendered = false;
+    paypal.Buttons({
+      createOrder: function (data, actions) {
+        const amount = "1.00"; // TODO: change to "499.00" when you go live
 
-    continueBtn.addEventListener("click", function () {
-      statusMsg.textContent = "Great, now complete your payment below.";
+        return actions.order.create({
+          intent: "CAPTURE",
+          purchase_units: [{
+            amount: { value: amount },
+            description: "Blockchain Engineering Bootcamp - Founding Cohort",
+            custom_id: `bootcamp_${Date.now()}`
+          }]
+        });
+      },
 
-      continueBtn.disabled = true;
-      paypalButtonsContainer.classList.remove("hidden");
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+          // Hide PayPal buttons and show success block
+          paypalButtonsContainer.classList.add("hidden");
+          successPanel.classList.remove("hidden");
+          successPanel.scrollIntoView({ behavior: "smooth" });
+        });
+      },
 
-      if (!paypalRendered) {
-        paypalRendered = true;
+      onCancel: function () {
+        alert("Payment cancelled. You can try again.");
+      },
 
-        paypal.Buttons({
-          createOrder: function (data, actions) {
-            const amount = "1.00"; // <-- Change to "499.00" when you go live
-
-            return actions.order.create({
-              intent: "CAPTURE",
-              purchase_units: [{
-                amount: { value: amount },
-                description: "Blockchain Engineering Bootcamp - Founding Cohort",
-                custom_id: `bootcamp_${Date.now()}`
-              }]
-            });
-          },
-
-          onApprove: function (data, actions) {
-            return actions.order.capture().then(function (details) {
-
-              // Hide payment UI
-              paypalButtonsContainer.classList.add("hidden");
-              continueBtn.style.display = "none";
-
-              // Show success panel
-              statusMsg.textContent = "Payment completed. You’re in! 🎉";
-              successPanel.classList.remove("hidden");
-              successPanel.scrollIntoView({ behavior: "smooth" });
-            });
-          },
-
-          onCancel: function () {
-            statusMsg.textContent = "Payment cancelled. You can try again.";
-            continueBtn.disabled = false;
-          },
-
-          onError: function (err) {
-            console.error("PayPal error:", err);
-            statusMsg.textContent = "Something went wrong. Please refresh and try again.";
-            continueBtn.disabled = false;
-          }
-
-        }).render("#paypal-buttons");
+      onError: function (err) {
+        console.error("PayPal error:", err);
+        alert("Something went wrong with PayPal. Please refresh and try again.");
       }
-    });
+    }).render("#paypal-buttons");
   </script>
 </body>
 </html>
