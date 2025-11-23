@@ -251,7 +251,7 @@
 
     paypal.Buttons({
       createOrder: function (data, actions) {
-        const amount = "1.00"; // TODO: change to "499.00" when you go live
+        const amount = "499.00"; // TODO: change to "499.00" when you go live
 
         return actions.order.create({
           intent: "CAPTURE",
