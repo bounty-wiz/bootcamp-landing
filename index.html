@@ -70,76 +70,58 @@
     <div class="grid grid-2">
       <!-- LEFT: CURRICULUM -->
       <section class="card">
-        <h2>Curriculum overview</h2>
-        <p class="muted">
-          6 weeks of written lessons and code examples. No pre-recorded videos
-          you’ll read, code, and ship. The exact depth can shift based on the cohort,
-          but the spine looks like this:
-        </p>
+      <h2>Curriculum overview</h2>
+      <p class="muted">
+        6 weeks of written lessons and code examples — no videos. You’ll read, code, debug,
+        and ship real things. Here's the high-level structure:
+      </p>
 
-        <h3>Week 1 – Ethereum internals & nodes</h3>
-        <ul>
-          <li>Execution vs consensus, blocks, mempools, forks.</li>
-          <li>Node types: full, archive, light and what providers actually run.</li>
-          <li>Running Anvil vs Geth dev mode, comparing RPC behaviour.</li>
-          <li>Hands-on: inspect blocks, txs, txpool; connect clients to real RPCs.</li>
-        </ul>
+      <h3>Week 1 — Ethereum internals</h3>
+      <ul>
+        <li>How nodes really work (Geth, Erigon, Anvil).</li>
+        <li>Blocks, mempools, forks, and RPC behaviour.</li>
+        <li>Hands-on: run clients, inspect state, debug real txs.</li>
+      </ul>
 
-        <h3>Week 2 – Smart contracts & the EVM</h3>
-        <ul>
-          <li>Solidity fundamentals with a focus on <em>how</em> it compiles down.</li>
-          <li>ABI encoding, calldata layout, storage slots, logs/events.</li>
-          <li>Gas, reverts, error handling and common footguns.</li>
-          <li>Hands-on: ERC-20, smart contracts, tests and scripts with Foundry.</li>
-        </ul>
+      <h3>Week 2 — Smart contracts & the EVM</h3>
+      <ul>
+        <li>ABI, calldata, storage, logs, gas, reverts.</li>
+        <li>Hands-on: write + test ERC-20 / ERC-721 with Foundry.</li>
+        <li>Understand how Solidity compiles to opcodes.</li>
+      </ul>
 
-        <h3>Week 3-4 – Transactions & messages</h3>
-        <ul>
-          <li>Transaction structure: nonce, gas, fees, access lists, chainId.</li>
-          <li>RLP serialization and how wallets build & sign raw txs</li>
-          <li>Transaction Types:</li>
-          <ul>
-            <li>Legacy</li>
-            <li>Access List Transactions - EIP-2930</li>
-            <li>Dynamic Fee Transactions - EIP-1559</li>
-            <li>Set-Code Transactions - EIP-7702</li>
-          </ul>
-          <li>Off-chain message Types:</li>
-          <ul>
-            <li>Personal Sign - EIP-191</li>
-            <li>Typed Data Sign + Verification - EIP-712</li>
-          </ul>
-        </ul>
+      <h3>Week 3 — Transactions deep-dive</h3>
+      <ul>
+        <li>Transaction structure, gas, fees, replay protection.</li>
+        <li>Legacy, EIP-2930, EIP-1559, EIP-7702.</li>
+        <li>Hands-on: build & sign raw transactions manually.</li>
+      </ul>
 
-        <h3>Week 4-5 – On-chain activity & debugging</h3>
-        <ul>
-          <li>Event/log encoding, topics, indexed vs non-indexed params.</li>
-          <li>Decoding real logs by hand and with code.</li>
-          <li>Internal calls & “hidden” ETH transfers via traces.</li>
-          <li>Hands-on: use <code>debug_trace*</code> to explain weird production txs.</li>
-        </ul>
+      <h3>Week 4 — Messages & signing</h3>
+      <ul>
+        <li>RLP serialization basics.</li>
+        <li>EIP-191 and EIP-712 signing + verification.</li>
+        <li>Hands-on: implement sign/verify in Go or TS.</li>
+      </ul>
 
-        <h3>Week 5-6 – Batching, streaming & monitoring</h3>
-        <ul>
-          <li>JSON-RPC batching, Multicall patterns, performance trade-offs.</li>
-          <li>WebSockets and <code>eth_subscribe</code> for live feeds.</li>
-          <li>Designing a small indexer + SQLite/Postgres backend.</li>
-          <li>Hands-on: build a service that tracks transfers and contract activity.</li>
-        </ul>
+      <h3>Week 5 — On-chain activity & monitoring</h3>
+      <ul>
+        <li>Events, logs, topics, and internal calls.</li>
+        <li>Tracing hidden transfers with <code>debug_trace*</code>.</li>
+        <li>Batching, multicall, and WebSocket subscriptions.</li>
+      </ul>
 
-        <h3>Week 6 – Mini DEX + real-time dashboard</h3>
-        <ul>
-          <li>Design and implement a simple AMM-style pool contract.</li>
-          <li>Emit clean events and index them in your backend.</li>
-          <li>Expose REST endpoints for volume, swaps, pool state, user history.</li>
-          <li>Build a minimal frontend that connects a wallet, swaps, and shows live stats.</li>
-        </ul>
+      <h3>Week 6 — Mini DEX + real-time dashboard</h3>
+      <ul>
+        <li>Build a simple AMM-style pool contract.</li>
+        <li>Index events into a backend (SQLite/Postgres).</li>
+        <li>Expose REST endpoints + build a live dashboard.</li>
+      </ul>
 
-        <p class="muted" style="margin-top:1rem;">
-          By the end you’ll have a small but real vertical slice of a Web3 product:
-          contracts, backend, indexing, monitoring, and a UI.
-        </p>
-      </section>
+      <p class="muted" style="margin-top:1rem;">
+        By the end, you’ll ship a real vertical slice: contracts, backend, monitoring, and UI.
+      </p>
+    </section>
 
       <!-- RIGHT: SIGNUP + PAYPAL -->
       <section class="card">
