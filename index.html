@@ -1,25 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Blockchain Engineering Bootcamp</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 0; background: #050816; color: #f5f5f5; }
-    .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.2rem 4rem; }
-    h1, h2, h3 { margin-bottom: 0.5rem; }
-    .hero { margin-bottom: 2rem; }
-    .badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 999px; background: #111827; font-size: 0.8rem; }
-    .pill { display: inline-block; padding: 0.35rem 0.9rem; border-radius: 999px; border: 1px solid #4b5563; font-size: 0.8rem; margin-right: 0.5rem; margin-bottom: 0.5rem; }
-    .grid { display: grid; gap: 1.5rem; }
-    @media (min-width: 768px) { .grid-2 { grid-template-columns: 2fr 1.2fr; } }
-    .card { border-radius: 1rem; border: 1px solid #1f2937; padding: 1.25rem 1.5rem; background: #020617; }
-    .price { font-size: 2rem; font-weight: 700; }
-    label { font-size: 0.9rem; display: block; margin-bottom: 0.25rem; color: #9ca3af; }
-    input { width: 100%; padding: 0.6rem 0.75rem; border-radius: 0.6rem; border: 1px solid #4b5563; background: #020617; color: #f9fafb; }
-    input:focus { outline: none; border-color: #22c55e; }
-    .muted { font-size: 0.85rem; color: #9ca3af; }
-    ul { padding-left: 1.1rem; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #050816;
+      color: #f5f5f5;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.2rem 4rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .hero {
+      margin-bottom: 2rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: #111827;
+      font-size: 0.8rem;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid #4b5563;
+      font-size: 0.8rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 2fr 1.2fr;
+      }
+    }
+
+    .card {
+      border-radius: 1rem;
+      border: 1px solid #1f2937;
+      padding: 1.25rem 1.5rem;
+      background: #020617;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    label {
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 0.25rem;
+      color: #9ca3af;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border-radius: 0.6rem;
+      border: 1px solid #4b5563;
+      background: #020617;
+      color: #f9fafb;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #22c55e;
+    }
+
+    .muted {
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+
+    ul {
+      padding-left: 1.1rem;
+    }
 
     .primary-btn {
       width: 100%;
@@ -33,39 +113,47 @@
       background: #22c55e;
       color: #020617;
     }
+
     .primary-btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
     }
+
     .error-text {
       color: #f97373;
       font-size: 0.8rem;
       margin-top: 0.25rem;
     }
+
     .hidden {
       display: none;
     }
   </style>
 
-  <!-- PayPal JS SDK (Smart Buttons / Orders API) -->
-  <script
-    src="https://www.paypal.com/sdk/js?client-id=AT4LZwcIV1do-qhJjds8Olz5pKfV66-GCu4UE60kryzk1MAT6Sb19LDNMu9lcHNBh4juZEVQ_QA4H2D1&currency=USD">
-  </script>
 </head>
 
 <body>
   <div class="container">
     <!-- HERO -->
     <section class="hero">
-      <span class="badge">Founding Cohort · 6-week live bootcamp</span>
+      <span class="badge">Cohort 2 · 6-week live bootcamp</span>
       <h1>Blockchain Engineering Bootcamp</h1>
-      <p>Go from “I can write Solidity” to “I can reason about nodes, transactions, and production-grade systems across chains.”</p>
+      <p>Go from “I can write Solidity” to “I can reason about nodes, transactions, and production-grade systems across
+        chains.”</p>
       <div style="margin-top: 0.75rem;">
         <span class="pill">Reading + code, no videos</span>
         <span class="pill">Hands on course</span>
         <span class="pill">Code reviews</span>
         <span class="pill">2×40-min live calls / week</span>
         <span class="pill">For devs</span>
+      </div>
+      <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="#waitlist-section" class="primary-btn"
+          style="width: auto; margin-top: 0; text-decoration: none; padding: 0.75rem 1.5rem; display: inline-block; text-align: center; box-sizing: border-box;">View
+          Syllabus & Join Waitlist</a>
+        <a href="#" class="primary-btn"
+          style="width: auto; margin-top: 0; text-decoration: none; padding: 0.75rem 1.5rem; display: inline-block; text-align: center; background: #1f2937; color: #f5f5f5; border: 1px solid #4b5563; box-sizing: border-box;">Apply
+          for the Next Cohort</a>
       </div>
     </section>
 
@@ -114,7 +202,7 @@
           <li>RLP serialization basics.</li>
           <li>Transaction structure, gas, fees, replay protection</li>
           <li>Transaction types:</li>
-          <ul>  
+          <ul>
             <li>Legacy Transaction</li>
             <li>Access List Transaction (EIP-2930)</li>
             <li>Dynamic Fee Transaction (EIP-1559)</li>
@@ -151,8 +239,8 @@
           <li>Batching, multicall, and WebSocket subscriptions.</li>
           <li>Hands-on:</li>
           <ul>
-              <li>Build small block explorer that indexes events + traces</li>
-              <li>Build a transaction monitor that tracks tx status + internal calls</li>
+            <li>Build small block explorer that indexes events + traces</li>
+            <li>Build a transaction monitor that tracks tx status + internal calls</li>
           </ul>
         </ul>
 
@@ -168,41 +256,45 @@
         </p>
       </section>
 
-      <!-- RIGHT: SIGNUP + PAYPAL -->
-      <section class="card">
-        <h2>Join the next cohort</h2>
-        <p class="price">$499</p>
+      <!-- RIGHT: WAITLIST -->
+      <section class="card" id="waitlist-section">
+        <h2>Join the Cohort 2 Waitlist</h2>
 
         <p class="muted">
-          Early Priority Access - You’re getting a special discounted rate reserved only for early signers of the Bootcamp. Future cohorts will be priced higher as the program expands and new modules are added.
+          This bootcamp is a deep dive into Ethereum internals, transaction types, and building a live monitoring
+          system. We focus on real-world education and outcomes to elevate your Web3 engineering skills.
         </p>
 
         <p class="muted" style="margin-top:0.5rem;">
-          This bootcamp is fully hands-on: weekly written lessons, deep code examples,
+          The bootcamp is fully hands-on: weekly written lessons, deep code examples,
           two 40-minute live calls with me each week, and private text support whenever
           you get stuck.
         </p>
 
-        <p class="muted" style="margin-top:1rem;">Complete your payment below:</p>
+        <p class="muted" style="margin-top:1rem;">Enter your details below to join the waitlist:</p>
 
-        <!-- PayPal Buttons -->
-        <div id="paypal-buttons-container" style="margin-top: 1rem;">
-          <div id="paypal-buttons"></div>
+        <form id="waitlist-form" style="margin-top: 1rem;">
+          <div style="margin-bottom: 1rem;">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          </div>
+          <button type="submit" class="primary-btn" style="margin-top: 0.5rem;">Join Waitlist</button>
+        </form>
+
+        <div style="margin-top: 1.5rem; text-align: center;">
+          <a href="#" style="color: #22c55e; text-decoration: underline; font-size: 0.95rem;">Apply for the Next
+            Cohort</a>
         </div>
 
         <!-- SUCCESS PANEL -->
         <div id="success-panel" class="hidden" style="margin-top:1.5rem;">
-          <h3 style="margin-bottom:0.25rem;">You’re in the bootcamp 🎉</h3>
+          <h3 style="margin-bottom:0.25rem;">You’re on the waitlist 🎉</h3>
           <p class="muted">
-            Your payment was received successfully. You’ll receive an email shortly with:
-          </p>
-          <ul class="muted">
-            <li>Bootcamp start date &amp; time</li>
-            <li>Links to the written materials</li>
-            <li>Calendar invites for the live calls</li>
-          </ul>
-          <p class="muted">
-            If you don’t see the email within 10–15 minutes, check spam or message me directly.
+            We've received your details. You’ll be notified when applications open.
           </p>
         </div>
       </section>
@@ -245,41 +337,41 @@
   </div>
 
   <script>
-    const paypalButtonsContainer = document.getElementById("paypal-buttons-container");
+    const waitlistForm = document.getElementById("waitlist-form");
     const successPanel = document.getElementById("success-panel");
 
-    paypal.Buttons({
-      createOrder: function (data, actions) {
-        const amount = "499.00"; // TODO: change to "499.00" when you go live
+    // TODO: Replace this URL with your published Google Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbw01SMpUQ003n31RCbHlzhUCBQ3ZOJm1cyUvvHmjZTj5SLKRMzauwUgcSnVp0Y5KeksGw/exec";
 
-        return actions.order.create({
-          intent: "CAPTURE",
-          purchase_units: [{
-            amount: { value: amount },
-            description: "Blockchain Engineering Bootcamp - Founding Cohort",
-            custom_id: `bootcamp_${Date.now()}`
-          }]
-        });
-      },
+    if (waitlistForm) {
+      waitlistForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-      onApprove: function (data, actions) {
-        return actions.order.capture().then(function (details) {
-          // Hide PayPal buttons and show success block
-          paypalButtonsContainer.classList.add("hidden");
-          successPanel.classList.remove("hidden");
-          successPanel.scrollIntoView({ behavior: "smooth" });
-        });
-      },
+        const submitBtn = waitlistForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerText;
 
-      onCancel: function () {
-        alert("Payment cancelled. You can try again.");
-      },
+        // Show loading state
+        submitBtn.innerText = "Submitting...";
+        submitBtn.disabled = true;
 
-      onError: function (err) {
-        console.error("PayPal error:", err);
-        alert("Something went wrong with PayPal. Please refresh and try again.");
-      }
-    }).render("#paypal-buttons");
+        // Send form data to Google Sheets
+        fetch(scriptURL, { method: 'POST', body: new FormData(waitlistForm) })
+          .then(response => {
+            // Hide form and show success block
+            waitlistForm.classList.add("hidden");
+            successPanel.classList.remove("hidden");
+            successPanel.scrollIntoView({ behavior: "smooth" });
+          })
+          .catch(error => {
+            console.error('Error!', error.message);
+            alert("Something went wrong. Please try again.");
+            // Revert button state if error
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+          });
+      });
+    }
   </script>
 </body>
+
 </html>
