@@ -144,7 +144,7 @@
         <span class="pill">Reading + code, no videos</span>
         <span class="pill">Hands on course</span>
         <span class="pill">Code reviews</span>
-        <span class="pill">2×40-min live calls / week</span>
+        <span class="pill">2×45-min live calls / week</span>
         <span class="pill">For devs</span>
       </div>
       <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
@@ -164,94 +164,46 @@
           and ship real things. Here's the high-level structure:
         </p>
 
-        <h3>Week 1 — Ethereum internals</h3>
         <ul>
-          <li>What is Ethereum? Execution vs Consensus layers</li>
-          <li>What are Blocks, Transactions and Mempools</li>
-          <li>What are node providers(For example ChainStack) and how to use them</li>
-          <li>What are Nodes and how they really work (Geth, Erigon, Anvil)</li>
-          <li>Get Familiar with EVM Developer Tools</li>
-          <li>Hands-on:</li>
+          <h3>Week 1 — Ethereum Internals, Nodes, and the Developer Environment</h3>
           <ul>
-            <li>Install Foundry</li>
-            <li>Start Foundry Project: Run Anvil, Explore default accounts, decode with cast tool</li>
-            <li>run clients, inspect state, debug real txs</li>
+            <li>Foundational Architecture: Ethereum as a State Machine, Data Structures like Merkle Trees, and Accounts
+              (EOAs vs Contracts).</li>
+            <li>Post-Merge Protocol: The split between the Execution Layer (EL) and Consensus Layer (CL).</li>
+            <li>Execution Environment (EVM): Stack, Memory, Storage, Gas Mechanics, and ABI Encoding.</li>
           </ul>
-        </ul>
 
-        <h3>Week 2 — Wallets, Smart contracts & the EVM</h3>
-        <ul>
-          <li>Solidity basics: state vars, functions, modifiers, events</li>
-          <li>ABI, calldata, storage, logs, gas, errors & reverts.</li>
-          <li>Understand how Solidity compiles to opcodes.</li>
-          <li>What are wallets</li>
-          <li>What are wallet providers</li>
-          <li>Hands-on:</li>
+          <h3>Week 2 — Smart Contracts: Foundations</h3>
           <ul>
-            <li>Generate local wallet</li>
-            <li>Setup 3rd party wallet</li>
-            <li>Write + test ERC-20 with Foundry</li>
-            <li>Execute Transactions on the deployed contracts</li>
+            <li>Solidity-to-EVM Translation: ABI Encoding, Function Selectors, and Static vs. Dynamic Types.</li>
+            <li>Execution Flow &amp; Context: Message Calls (CALL, DELEGATECALL, STATICCALL) and Reverts.</li>
+            <li>The EVM Dispatcher, Non-Payable Safety, and RLP Encoding.</li>
           </ul>
-        </ul>
 
-        <h3>Week 3 — Transactions deep-dive</h3>
-        <ul>
-          <li>RLP serialization basics.</li>
-          <li>Transaction structure, gas, fees, replay protection</li>
-          <li>Transaction types:</li>
+          <h3>Week 3 — Transaction and Message Types in EVM</h3>
           <ul>
-            <li>Legacy Transaction</li>
-            <li>Access List Transaction (EIP-2930)</li>
-            <li>Dynamic Fee Transaction (EIP-1559)</li>
-            <li>Set-Code Transaction (EIP-7702)</li>
+            <li>Transaction as a Signed Message: Nonces, Replay Protection (EIP-155), and Signing Preimage.</li>
+            <li>Transaction Types &amp; Fee Models: Legacy (Type 0), Access Lists (EIP-2930), and Dynamic Fees
+              (EIP-1559).</li>
+            <li>Transaction Lifecycle &amp; Mempool Dynamics: Pending vs. Queued and Transaction Replacement.</li>
           </ul>
-          <li>Hands-on:</li>
-          <ul>
-            <li>Build, sign and publish raw transactions in Go</li>
-            <li>Send raw transactions to a local Anvil node</li>
-          </ul>
-        </ul>
 
-        <h3>Week 4 — Messages & signing</h3>
-        <ul>
-          <li>Off-chain Messages:</li>
+          <h3>Week 4 — On-Chain Activity, Logs, Streaming, and Monitoring Systems</h3>
           <ul>
-            <li>What are off-chain messages</li>
-            <li>Use cases of off-chain messages</li>
-            <li>Personal Sign Messages + EIP-191</li>
-            <li>SignTypedData Message + EIP-712 signing + verification.</li>
+            <li>Off-Chain Intent &amp; Signing: EIP-191 (Personal Sign) and EIP-712 (Structured Data).</li>
+            <li>Observability &amp; Logs (Events): Topics and Data payload, and eth_getLogs.</li>
+            <li>Advanced Debugging &amp; Tracing: Using eth_call vs debug_traceCall.</li>
           </ul>
-          <li>On-chain Transactions Vs Off-chain Messages</li>
-          <li>Hands-on:</li>
+
+          <h3>Week 5-6 — Mini DEX + Live Monitoring System</h3>
           <ul>
-            <li>Implement EIP-191 personal_sign + verify in Go</li>
-            <li>Implement EIP-712 signTypedData + verify in Go</li>
+            <li>The Token Economy and ERC-20 Standard: Mandatory Interface, Transfers, and Allowance Mechanism.</li>
+            <li>Full-Stack Integration &amp; Architecture: Off-Chain State Persistence using a PostgreSQL database.</li>
           </ul>
-        </ul>
 
-        <h3>Week 5 — Batching, On-chain activity & monitoring</h3>
-        <ul>
-          <li>Events, logs, topics, and internal calls.</li>
-          <li>Tracing hidden transfers with <code>debug_trace*</code>.</li>
-          <li>Batching, multicall, and WebSocket subscriptions.</li>
-          <li>Hands-on:</li>
-          <ul>
-            <li>Build small block explorer that indexes events + traces</li>
-            <li>Build a transaction monitor that tracks tx status + internal calls</li>
-          </ul>
-        </ul>
-
-        <h3>Week 6 — Mini DEX + real-time dashboard</h3>
-        <ul>
-          <li>Build a simple AMM-style pool contract</li>
-          <li>Index events into a backend + Postgres integration</li>
-          <li>Expose REST endpoints + build a live dashboard</li>
-        </ul>
-
-        <p class="muted" style="margin-top:1rem;">
-          By the end, you’ll ship a real vertical slice: contracts, backend, monitoring, and UI.
-        </p>
+          <p class="muted" style="margin-top:1rem;">
+            By the end, you’ll ship a real vertical slice: contracts, backend, monitoring, and UI.
+          </p>
       </section>
 
       <!-- RIGHT: WAITLIST -->
@@ -265,7 +217,7 @@
 
         <p class="muted" style="margin-top:0.5rem;">
           The bootcamp is fully hands-on: weekly written lessons, deep code examples,
-          two 40-minute live calls with me each week, and private text support whenever
+          two 45-minute live calls with me each week, and private text support whenever
           you get stuck.
         </p>
 
@@ -279,6 +231,10 @@
           <div style="margin-bottom: 1rem;">
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <label for="telegram">Telegram Handle <span class="muted">(Optional)</span></label>
+            <input type="text" id="telegram" name="telegram" placeholder="@username" />
           </div>
           <button type="submit" class="primary-btn" style="margin-top: 0.5rem;">Join Waitlist</button>
         </form>
@@ -302,7 +258,7 @@
       <p class="muted">
         This is not a “watch 40 hours of videos and forget everything” course.
         You get written lessons, code examples, and exercises you run locally.
-        Each week we meet for two private 40-minute live calls (Q&amp;A, debugging, code review),
+        Each week we meet for two private 45-minute live calls (Q&amp;A, debugging, code review),
         plus you can message me privately for help between sessions.
       </p>
 
